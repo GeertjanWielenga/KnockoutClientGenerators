@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Templates">
+        <folder name="ClientSide">
+            <file name="RestKnockoutClient.js">
+                <attr name="displayName" bundlevalue="org.netbeans.modules.web.knockout.rest.Bundle#Templates/ClientSide/RESTfulKnockoutClient.js"/>
+                <attr name="position" intvalue="420"/>
+                <attr name="template" boolvalue="true"/>
+                <attr name="templateCategory" stringvalue="html5"/>
+                <attr name="templateWizardIterator" newvalue="org.netbeans.modules.web.knockout.rest.wizard.JSClientIterator"/>
+                <attr name="templateWizardURL" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/wizard/resources/JSClient.html"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.web.knockout.rest.wizard.Bundle"/>
+                <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/resources/restservice.png"/>
+            </file>
+            <file name="kojs.html" url="/org/netbeans/modules/web/knockout/rest/resources/kojs.html">
+                <attr name="position" intvalue="0"/>
+                <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+            </file>
+            <file name="korest.js" url="/org/netbeans/modules/web/knockout/rest/resources/korest.js">
+                <attr name="position" intvalue="0"/>
+                <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+            </file>
+        </folder>
+        <folder name="WebServices">
+            <file name="RestKnockoutClient.js">
+                <attr name="displayName" bundlevalue="org.netbeans.modules.web.knockout.rest.Bundle#Templates/ClientSide/RESTfulKnockoutClient.js"/>
+                <attr name="position" intvalue="485"/>
+                <attr name="template" boolvalue="true"/>
+                <attr name="templateCategory" stringvalue="html5"/>
+                <attr name="templateWizardIterator" newvalue="org.netbeans.modules.web.knockout.rest.wizard.JSClientIterator"/>
+                <attr name="templateWizardURL" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/wizard/resources/JSClient.html"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.web.knockout.rest.wizard.Bundle"/>
+                <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/resources/restservice.png"/>
+            </file>            
+        </folder>    
+    </folder>
+</filesystem>
