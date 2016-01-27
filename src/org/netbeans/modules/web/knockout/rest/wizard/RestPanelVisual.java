@@ -3,8 +3,6 @@ package org.netbeans.modules.web.knockout.rest.wizard;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
-import org.netbeans.api.project.Project;
-import org.netbeans.modules.web.clientproject.api.WebClientLibraryManager;
 import org.netbeans.modules.websvc.rest.client.RESTExplorerPanel;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.DialogDescriptor;
@@ -13,15 +11,12 @@ import org.openide.NotifyDescriptor;
 import org.openide.WizardDescriptor;
 import org.openide.filesystems.FileObject;
 import org.openide.nodes.Node;
-import org.openide.util.Mutex;
 import org.openide.util.NbBundle;
 
-/**
- *
- * @author ads
- */
 public final class RestPanelVisual extends JPanel  {
     
+    private static final String UNDERSCORE = "underscore";          // NOI18N
+    private static final String UNDERSCORE_JS_ = UNDERSCORE+".js-"; // NOI18N
     private static final String JQUERY_JS = "jquery";               // NOI18N
     private static final String JQUERY_JS_ = JQUERY_JS+'-';        
     
@@ -36,7 +31,8 @@ public final class RestPanelVisual extends JPanel  {
         initComponents();
         String jsName = suggestJsName(panel.getDescriptor());
         Templates.setTargetName(panel.getDescriptor(), jsName);
-//        ui.setModel( new DefaultComboBoxModel( RestPanel.JsUi.values()));
+        ui.setModel( new DefaultComboBoxModel( RestPanel.JsUi.values()));
+        backboneCheckBox.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -51,6 +47,8 @@ public final class RestPanelVisual extends JPanel  {
         browseButton = new javax.swing.JButton();
         backboneCheckBox = new javax.swing.JCheckBox();
         projectLbl = new javax.swing.JLabel();
+        uiLbl = new javax.swing.JLabel();
+        ui = new javax.swing.JComboBox();
 
         restProjectResource.setEditable(false);
 
@@ -66,15 +64,25 @@ public final class RestPanelVisual extends JPanel  {
         projectLbl.setLabelFor(restProjectResource);
         org.openide.awt.Mnemonics.setLocalizedText(projectLbl, org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "LBL_Project")); // NOI18N
 
+        org.openide.awt.Mnemonics.setLocalizedText(uiLbl, org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "LBL_GeneratedUI")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(projectLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(restProjectResource, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(projectLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(uiLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(restProjectResource, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                    .addComponent(ui, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -90,6 +98,10 @@ public final class RestPanelVisual extends JPanel  {
                     .addComponent(restProjectResource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browseButton)
                     .addComponent(projectLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uiLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(backboneCheckBox)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -103,6 +115,8 @@ public final class RestPanelVisual extends JPanel  {
         backboneCheckBox.getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSD_Backbone")); // NOI18N
         projectLbl.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSN_Project")); // NOI18N
         projectLbl.getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSD_Project")); // NOI18N
+        uiLbl.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSN_GeneratedUI")); // NOI18N
+        uiLbl.getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSD_GeneratedUI")); // NOI18N
 
         getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "LBL_RestSource")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
@@ -130,52 +144,20 @@ public final class RestPanelVisual extends JPanel  {
     private javax.swing.JButton browseButton;
     private javax.swing.JLabel projectLbl;
     private javax.swing.JTextField restProjectResource;
+    private javax.swing.JComboBox ui;
+    private javax.swing.JLabel uiLbl;
     // End of variables declaration//GEN-END:variables
     
     void store(WizardDescriptor descriptor) {
         descriptor.putProperty(RestPanel.ADD_BACKBONE, backboneCheckBox.isSelected());
         descriptor.putProperty(RestPanel.EXISTED_BACKBONE, myBackbone);
+        descriptor.putProperty(RestPanel.EXISTED_UNDERSCORE, myUnderscore);
         descriptor.putProperty(RestPanel.EXISTED_JQUERY, myJQuery);
+        descriptor.putProperty(RestPanel.UI, ui.getSelectedItem());
     }
     
     void read(WizardDescriptor wizardDescriptor) {
         myBackbone = null;
-        Project project = Templates.getProject(wizardDescriptor);
-        FileObject libs = JSClientIterator.getRootFolder(project).
-                getFileObject(WebClientLibraryManager.LIBS); 
-        boolean backboneExists = false; 
-        if ( libs != null ){
-            FileObject[] children = libs.getChildren();
-            for (FileObject child : children) {
-                String name = child.getName();
-                if (child.isFolder()) {
-                    if (name.startsWith(BACKBONE_JS_)) {
-                        backboneExists = true;
-                        myBackbone = getFile(child, BACKBONE);
-                    }
-                    else if (name.startsWith(JQUERY_JS_)) {
-                        myJQuery = getFile(child, JQUERY_JS);
-                    }
-                }
-                else {
-                    if (name.startsWith(BACKBONE)) {
-                        backboneExists = true;
-                        myBackbone = child;
-                    }
-                    else if (name.startsWith(JQUERY_JS)) {
-                        myJQuery = child;
-                    }
-                }
-            }
-        }
-        if ( backboneExists ){
-            Mutex.EVENT.readAccess( new Runnable() {
-                @Override
-                public void run() {
-                    backboneCheckBox.setVisible(false);                    
-                }
-            });
-        }
         Object fileName = wizardDescriptor.getProperty(RestPanel.FILE_NAME);
         String jsName=null;
         if ( fileName == null ){
@@ -186,17 +168,6 @@ public final class RestPanelVisual extends JPanel  {
         }
         
         Templates.setTargetName(wizardDescriptor, jsName);
-    }
-    
-    private FileObject getFile(FileObject folder , String prefix){
-        FileObject[] children = folder.getChildren();
-        for (FileObject child : children) {
-            String name = child.getName();
-            if ( name.startsWith(prefix)){
-                return child;
-            }
-        }
-        return null;
     }
 
     private String suggestJsName(  WizardDescriptor descriptor ) {
@@ -250,5 +221,6 @@ public final class RestPanelVisual extends JPanel  {
     private RestPanel myPanel;
     private Node myRestNode;
     private FileObject myBackbone;
+    private FileObject myUnderscore;
     private FileObject myJQuery;
 }

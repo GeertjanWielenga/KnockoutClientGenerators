@@ -37,6 +37,7 @@ public class RestPanel implements WizardDescriptor.FinishablePanel<WizardDescrip
     public final static String FILE_NAME = "js-file-name";                // NOI18N
     public final static String ADD_BACKBONE = "backbone";                 // NOI18N
     public final static String EXISTED_BACKBONE ="existed-backbone";      // NOI18N
+    public final static String EXISTED_UNDERSCORE ="existed-underscore";  // NOI18N
     public final static String EXISTED_JQUERY ="existed-jquery";          // NOI18N
     public final static String UI ="ui";                                  // NOI18N    
     
