@@ -1,6 +1,5 @@
 package org.netbeans.modules.web.knockout.rest.wizard;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
 import org.netbeans.modules.websvc.rest.client.RESTExplorerPanel;
@@ -31,8 +30,6 @@ public final class RestPanelVisual extends JPanel  {
         initComponents();
         String jsName = suggestJsName(panel.getDescriptor());
         Templates.setTargetName(panel.getDescriptor(), jsName);
-        ui.setModel( new DefaultComboBoxModel( RestPanel.JsUi.values()));
-        backboneCheckBox.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -45,10 +42,7 @@ public final class RestPanelVisual extends JPanel  {
 
         restProjectResource = new javax.swing.JTextField();
         browseButton = new javax.swing.JButton();
-        backboneCheckBox = new javax.swing.JCheckBox();
         projectLbl = new javax.swing.JLabel();
-        uiLbl = new javax.swing.JLabel();
-        ui = new javax.swing.JComboBox();
 
         restProjectResource.setEditable(false);
 
@@ -59,36 +53,20 @@ public final class RestPanelVisual extends JPanel  {
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(backboneCheckBox, org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "LBL_Backbone")); // NOI18N
-
         projectLbl.setLabelFor(restProjectResource);
         org.openide.awt.Mnemonics.setLocalizedText(projectLbl, org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "LBL_Project")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(uiLbl, org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "LBL_GeneratedUI")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(projectLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(uiLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(restProjectResource, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                    .addComponent(ui, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(projectLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(restProjectResource, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backboneCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,25 +76,15 @@ public final class RestPanelVisual extends JPanel  {
                     .addComponent(restProjectResource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browseButton)
                     .addComponent(projectLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(uiLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(backboneCheckBox)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         restProjectResource.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSN_ProjectPath")); // NOI18N
         restProjectResource.getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSD_ProjectPath")); // NOI18N
         browseButton.getAccessibleContext().setAccessibleName("Browse");
         browseButton.getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getBundle(RestPanelVisual.class).getString("A11Y_BrowseWSDLProject")); // NOI18N
-        backboneCheckBox.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSN_Backbone")); // NOI18N
-        backboneCheckBox.getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSD_Backbone")); // NOI18N
         projectLbl.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSN_Project")); // NOI18N
         projectLbl.getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSD_Project")); // NOI18N
-        uiLbl.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSN_GeneratedUI")); // NOI18N
-        uiLbl.getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSD_GeneratedUI")); // NOI18N
 
         getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "LBL_RestSource")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
@@ -140,20 +108,15 @@ public final class RestPanelVisual extends JPanel  {
                     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox backboneCheckBox;
     private javax.swing.JButton browseButton;
     private javax.swing.JLabel projectLbl;
     private javax.swing.JTextField restProjectResource;
-    private javax.swing.JComboBox ui;
-    private javax.swing.JLabel uiLbl;
     // End of variables declaration//GEN-END:variables
     
     void store(WizardDescriptor descriptor) {
-        descriptor.putProperty(RestPanel.ADD_BACKBONE, backboneCheckBox.isSelected());
         descriptor.putProperty(RestPanel.EXISTED_BACKBONE, myBackbone);
         descriptor.putProperty(RestPanel.EXISTED_UNDERSCORE, myUnderscore);
         descriptor.putProperty(RestPanel.EXISTED_JQUERY, myJQuery);
-        descriptor.putProperty(RestPanel.UI, ui.getSelectedItem());
     }
     
     void read(WizardDescriptor wizardDescriptor) {
