@@ -1,13 +1,11 @@
 package org.netbeans.modules.web.knockout.rest.wizard;
 
 import java.io.IOException;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;

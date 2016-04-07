@@ -158,7 +158,6 @@ public class JSClientIterator implements ProgressInstantiatingIterator<WizardDes
         Node restNode = myRestPanel.getRestNode();
         RestServiceDescription description = restNode.getLookup().lookup(
                 RestServiceDescription.class);
-        Boolean addBackbone = (Boolean)myWizard.getProperty(RestPanel.ADD_BACKBONE);
         FileObject existedBackbone = (FileObject)myWizard.getProperty(
                 RestPanel.EXISTED_BACKBONE);
         FileObject existedJQuery = (FileObject)myWizard.getProperty(

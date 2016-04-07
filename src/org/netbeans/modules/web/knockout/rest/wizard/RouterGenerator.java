@@ -8,7 +8,6 @@ import javax.lang.model.element.TypeElement;
 
 import org.netbeans.api.java.source.CompilationController;
 import org.netbeans.modules.web.knockout.rest.wizard.JSClientGenerator.HttpRequests;
-import org.netbeans.modules.web.knockout.rest.wizard.RestPanel.JsUi;
 
 /**
  * @author ads
