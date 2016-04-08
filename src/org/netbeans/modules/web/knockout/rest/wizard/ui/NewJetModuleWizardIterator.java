@@ -16,6 +16,7 @@ import org.netbeans.api.annotations.common.NonNull;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.templates.TemplateRegistration;
 import org.netbeans.api.templates.TemplateRegistrations;
+import org.netbeans.modules.web.knockout.rest.wizard.RestPanel;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
 import org.openide.filesystems.FileObject;
@@ -92,7 +93,7 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
     public void initialize(WizardDescriptor wizard) {
         this.descriptor = wizard;
         init();
-        panels = getPanels();
+        panels = getPanels(wizard);
 
         // make sure list of steps is accurate.
         String[] beforeSteps = (String[]) wizard.getProperty(WizardDescriptor.PROP_CONTENT_DATA);
@@ -187,8 +188,10 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
         // noop
     }
 
-    private WizardDescriptor.Panel<WizardDescriptor>[] getPanels() {
-        return new WizardDescriptor.Panel[] {new NewJetModuleWizardPanel()};
+    private WizardDescriptor.Panel<WizardDescriptor>[] getPanels(WizardDescriptor wizard) {
+        return new WizardDescriptor.Panel[] {
+            new RestPanel(wizard), 
+            new NewJetModuleWizardPanel()};
     }
 
     private void init() {

@@ -16,24 +16,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="htmlFolderLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jsFolderLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="projectLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="createdJsFileLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="createdHtmlFileLabel" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="htmlFolderTextField" max="32767" attributes="0"/>
+                      <Component id="htmlFolderTextField" pref="367" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="htmlFolderBrowseButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="createdHtmlFileTextField" max="32767" attributes="0"/>
-                  <Component id="createdJsFileTextField" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="projectTextField" max="32767" attributes="0"/>
@@ -42,8 +38,23 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jsFolderBrowseButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="nameTextField" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="nameTextField" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="createdJsFileLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="createdHtmlFileLabel" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="createdJsFileTextField" max="32767" attributes="0"/>
+                  <Component id="createdHtmlFileTextField" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,7 +82,7 @@
                   <Component id="htmlFolderTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="htmlFolderBrowseButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="createdJsFileTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="createdJsFileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -81,6 +92,7 @@
                   <Component id="createdHtmlFileTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="createdHtmlFileLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,7 +104,7 @@
           <ComponentRef name="nameTextField"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/netbeans/modules/html/ojet/ui/wizard/Bundle.properties" key="NewJetModuleWizardPanelUi.nameLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/netbeans/modules/web/knockout/rest/wizard/ui/Bundle.properties" key="NewJetModuleWizardPanelUi.nameLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -104,7 +116,7 @@
           <ComponentRef name="projectTextField"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/netbeans/modules/html/ojet/ui/wizard/Bundle.properties" key="NewJetModuleWizardPanelUi.projectLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/netbeans/modules/web/knockout/rest/wizard/ui/Bundle.properties" key="NewJetModuleWizardPanelUi.projectLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -119,7 +131,7 @@
           <ComponentRef name="jsFolderTextField"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/netbeans/modules/html/ojet/ui/wizard/Bundle.properties" key="NewJetModuleWizardPanelUi.jsFolderLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/netbeans/modules/web/knockout/rest/wizard/ui/Bundle.properties" key="NewJetModuleWizardPanelUi.jsFolderLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -128,7 +140,7 @@
     <Component class="javax.swing.JButton" name="jsFolderBrowseButton">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/netbeans/modules/html/ojet/ui/wizard/Bundle.properties" key="NewJetModuleWizardPanelUi.jsFolderBrowseButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/netbeans/modules/web/knockout/rest/wizard/ui/Bundle.properties" key="NewJetModuleWizardPanelUi.jsFolderBrowseButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Events>
@@ -141,7 +153,7 @@
           <ComponentRef name="htmlFolderTextField"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/netbeans/modules/html/ojet/ui/wizard/Bundle.properties" key="NewJetModuleWizardPanelUi.htmlFolderLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/netbeans/modules/web/knockout/rest/wizard/ui/Bundle.properties" key="NewJetModuleWizardPanelUi.htmlFolderLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -150,7 +162,7 @@
     <Component class="javax.swing.JButton" name="htmlFolderBrowseButton">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/netbeans/modules/html/ojet/ui/wizard/Bundle.properties" key="NewJetModuleWizardPanelUi.htmlFolderBrowseButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/netbeans/modules/web/knockout/rest/wizard/ui/Bundle.properties" key="NewJetModuleWizardPanelUi.htmlFolderBrowseButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Events>
@@ -163,7 +175,7 @@
           <ComponentRef name="createdJsFileTextField"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/netbeans/modules/html/ojet/ui/wizard/Bundle.properties" key="NewJetModuleWizardPanelUi.createdJsFileLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/netbeans/modules/web/knockout/rest/wizard/ui/Bundle.properties" key="NewJetModuleWizardPanelUi.createdJsFileLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -178,7 +190,7 @@
           <ComponentRef name="createdHtmlFileTextField"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/netbeans/modules/html/ojet/ui/wizard/Bundle.properties" key="NewJetModuleWizardPanelUi.createdHtmlFileLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/netbeans/modules/web/knockout/rest/wizard/ui/Bundle.properties" key="NewJetModuleWizardPanelUi.createdHtmlFileLabel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>

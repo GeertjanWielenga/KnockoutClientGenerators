@@ -42,7 +42,7 @@ public class RestPanel implements WizardDescriptor.FinishablePanel<WizardDescrip
     public final static String UI ="ui";                                  // NOI18N    
     
     
-    RestPanel(WizardDescriptor descriptor) {
+    public RestPanel(WizardDescriptor descriptor) {
         myWizard = descriptor;
     }
 
