@@ -210,8 +210,8 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
             LOGGER.log(Level.INFO, "Project is required");
             return;
         }
-        String jsFolder = resolveWebRootPath(project, "js/viewModels"); // NOI18N
-        String htmlFolder = resolveWebRootPath(project, "js/views"); // NOI18N
+        String jsFolder = resolveWebRootPath(project, "public_html/js/viewModels"); // NOI18N
+        String htmlFolder = resolveWebRootPath(project, "public_html/js/views"); // NOI18N
         descriptor.putProperty(NewJetModuleWizardPanel.FILE_NAME, findFreeFilename(project.getProjectDirectory(), jsFolder, htmlFolder, "home")); // NOI18N
         descriptor.putProperty(NewJetModuleWizardPanel.PROJECT, project);
         descriptor.putProperty(NewJetModuleWizardPanel.JS_FOLDER, jsFolder);

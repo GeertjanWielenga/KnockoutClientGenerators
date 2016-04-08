@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
+    
     <folder name="Templates">
+        <folder name="ClientSide">
+            <folder name="OJET">
+                <attr name="position" intvalue="10"/>
+                <attr name="displayName" bundlevalue="org.netbeans.modules.web.knockout.rest.wizard.Bundle#Templates/Clientside/OJET"/>
+                <attr name="templateCategory" stringvalue="notHtml5"/>
+            </folder>
+            <folder name="DummyEmptyRESTJETModule">
+                <attr name="instantiatingIterator" methodvalue="org.netbeans.modules.web.knockout.rest.wizard.ui.NewJetModuleWizardIterator.rest"/>
+                <attr name="position" intvalue="850"/>
+                <attr name="displayName" bundlevalue="org.netbeans.modules.web.knockout.rest.wizard.Bundle#Templates/Clientside/DummyEmptyRESTJETModule"/>
+                <attr name="iconBase" stringvalue="org/netbeans/modules/web/knockout/rest/resources/restservice.png"/>
+                <attr name="template" boolvalue="true"/>
+                <attr name="templateCategory" stringvalue="html5"/>
+                <attr name="templateWizardURL" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/wizard/resources/JSClient.html"/>
+            </folder>
+        </folder>
+    </folder>
+
+    
+    <!--    <folder name="Templates">
         <folder name="ClientSide">
             <file name="RestKnockoutClient.js">
                 <attr name="displayName" bundlevalue="org.netbeans.modules.web.knockout.rest.Bundle#Templates/ClientSide/RESTfulKnockoutClient.js"/>
@@ -34,5 +55,5 @@
                 <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/resources/restservice.png"/>
             </file>            
         </folder>    
-    </folder>
+    </folder>-->
 </filesystem>

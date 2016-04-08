@@ -47,6 +47,7 @@ public final class RestPanelVisual extends JPanel  {
         jLabel2 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
 
         restProjectResource.setEditable(false);
 
@@ -63,10 +64,12 @@ public final class RestPanelVisual extends JPanel  {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, "Table");
+        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, "Plain");
 
         buttonGroup1.add(jRadioButton2);
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton2, "Grid");
+        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton2, "Table");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton3, "Grid");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,7 +90,9 @@ public final class RestPanelVisual extends JPanel  {
                         .addComponent(jRadioButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButton2)
-                        .addGap(0, 250, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton3)
+                        .addGap(0, 184, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +106,8 @@ public final class RestPanelVisual extends JPanel  {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
@@ -138,6 +144,7 @@ public final class RestPanelVisual extends JPanel  {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField restProjectResource;
     // End of variables declaration//GEN-END:variables
     
