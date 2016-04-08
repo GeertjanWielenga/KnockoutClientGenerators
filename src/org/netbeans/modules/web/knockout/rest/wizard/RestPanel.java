@@ -19,7 +19,7 @@ import org.openide.util.NbBundle;
  */
 public class RestPanel implements WizardDescriptor.FinishablePanel<WizardDescriptor> 
 {
-    static enum JsUi {
+    public static enum JsUi {
         NO_UI(NbBundle.getMessage(RestPanel.class, "TXT_NoUi")),                // NOI18N
         TABLESORTER(NbBundle.getMessage(RestPanel.class, "TXT_TablesorterUi")); // NOI18N
         
@@ -121,7 +121,7 @@ public class RestPanel implements WizardDescriptor.FinishablePanel<WizardDescrip
         }
     }
     
-    Node getRestNode(){
+    public Node getRestNode(){
         return myComponent.getRestNode();
     }
     

@@ -38,7 +38,7 @@ import org.openide.filesystems.FileObject;
  * @author ads
  *
  */
-class JSClientGenerator {
+public class JSClientGenerator {
 
 //    static final String TABLESORTER_URL = 
 //            "http://mottie.github.com/tablesorter/";                 // NOI18N
@@ -87,7 +87,7 @@ class JSClientGenerator {
         myUi = ui;
     }
 
-    static JSClientGenerator create(RestServiceDescription description, JsUi ui) {
+    public static JSClientGenerator create(RestServiceDescription description, JsUi ui) {
         return new JSClientGenerator(description, ui);
     }
 

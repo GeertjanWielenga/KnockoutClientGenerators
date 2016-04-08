@@ -16,13 +16,16 @@ import org.netbeans.api.annotations.common.NonNull;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.templates.TemplateRegistration;
 import org.netbeans.api.templates.TemplateRegistrations;
+import org.netbeans.modules.web.knockout.rest.wizard.JSClientGenerator;
 import org.netbeans.modules.web.knockout.rest.wizard.RestPanel;
+import org.netbeans.modules.websvc.rest.model.api.RestServiceDescription;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
+import org.openide.nodes.Node;
 import org.openide.util.NbBundle;
 
 public final class NewJetModuleWizardIterator implements WizardDescriptor.AsynchronousInstantiatingIterator<WizardDescriptor> {
@@ -34,7 +37,7 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
     private WizardDescriptor descriptor;
     private WizardDescriptor.Panel<WizardDescriptor>[] panels;
     private int index;
-
+    private RestPanel myRestPanel;
 
     private NewJetModuleWizardIterator(Type type) {
         assert type != null;
@@ -55,12 +58,10 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
                 scriptEngine = "freemarker",
                 position = 101,
                 displayName = "#Templates/ClientSide/OJET/EmptyJETModule-html",
-                iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),
-    })
+                iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),})
     @NbBundle.Messages({
         "Templates/ClientSide/OJET/EmptyJETModule-js=Empty JET Module (JavaScript)",
-        "Templates/ClientSide/OJET/EmptyJETModule-html=Empty JET Module (HTML)",
-    })
+        "Templates/ClientSide/OJET/EmptyJETModule-html=Empty JET Module (HTML)",})
     public static NewJetModuleWizardIterator rest() {
         return new NewJetModuleWizardIterator(Type.REST);
     }
@@ -88,10 +89,10 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
 //    public static NewJetModuleWizardIterator knockout() {
 //        return new NewJetModuleWizardIterator(Type.KNOCKOUT);
 //    }
-
     @Override
     public void initialize(WizardDescriptor wizard) {
         this.descriptor = wizard;
+        myRestPanel = new RestPanel(wizard);
         init();
         panels = getPanels(wizard);
 
@@ -121,7 +122,15 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
         String name = (String) descriptor.getProperty(NewJetModuleWizardPanel.FILE_NAME);
         String jsFolder = (String) descriptor.getProperty(NewJetModuleWizardPanel.JS_FOLDER);
         String htmlFolder = (String) descriptor.getProperty(NewJetModuleWizardPanel.HTML_FOLDER);
-        Map<String, Object> templateParams = Collections.<String, Object>singletonMap("name", name); // NOI18N
+
+        Node restNode = myRestPanel.getRestNode();
+        RestServiceDescription description = restNode.getLookup().lookup(
+                RestServiceDescription.class);
+        RestPanel.JsUi ui = (RestPanel.JsUi) descriptor.getProperty(RestPanel.UI);
+        JSClientGenerator generator = JSClientGenerator.create(description, ui);
+        Map<String, String> templateParams = generator.generate();
+
+//        Map<String, Object> templateParams = Collections.<String, Object>singletonMap("name", name); // NOI18N
         // js
         FileObject folder = FileUtil.createFolder(projectDirectory, jsFolder);
         DataFolder dataFolder = DataFolder.findFolder(folder);
@@ -189,8 +198,8 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
     }
 
     private WizardDescriptor.Panel<WizardDescriptor>[] getPanels(WizardDescriptor wizard) {
-        return new WizardDescriptor.Panel[] {
-            new RestPanel(wizard), 
+        return new WizardDescriptor.Panel[]{
+            myRestPanel,
             new NewJetModuleWizardPanel()};
     }
 
@@ -256,7 +265,6 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
     }
 
     //~ Inner classes
-
     private enum Type {
 //        EMPTY {
 //            @Override
@@ -281,8 +289,8 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
             }
         };
 
-
         abstract String getJsTemplatePath();
+
         abstract String getHtmlTemplatePath();
 
     }

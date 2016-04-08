@@ -1,5 +1,8 @@
-MyCustomerViewModel = function() {
-    var self = this;
-    ${models} 
-};
-ko.applyBindings(new MyCustomerViewModel());
+define(['ojs/ojcore', 'knockout'
+], function (oj, ko) {
+    function customerContentViewModel() {
+        var self = this;
+        ${models} 
+    }
+    return customerContentViewModel;
+});
