@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
@@ -16,7 +15,6 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.ElementFilter;
-
 import org.netbeans.api.java.source.CompilationController;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
@@ -54,12 +52,12 @@ class ModelGenerator {
 
         String url = getUrl(path);
         String entitiesName = myModelName.toLowerCase() + "s";
-        myCommonModels.append("self.items");                            // NOI18N
+        myCommonModels.append("self.data");                            // NOI18N
         myCommonModels.append(" = ko.observableArray();");       // NOI18N
         myCommonModels.append("\n");                                   // NOI18N
         myCommonModels.append("$.getJSON(\"").append(url).append("\").\nthen(function(").append(entitiesName).append(") {");
         myCommonModels.append("\n  $.each(").append(entitiesName).append(", function() {");                                   // NOI18N
-        myCommonModels.append("\n    self.items.push({");                                   // NOI18N
+        myCommonModels.append("\n    self.data.push({");                                   // NOI18N
 
         myAttributes = new HashSet<ModelAttribute>();
         String parsedData = parse(entity, controller);
@@ -67,7 +65,7 @@ class ModelGenerator {
             myCommonModels.append(parsedData);
         }
         if (!myAttributes.isEmpty()) {
-            // suggest what attribute could be used as displayName 
+            // suggest what attribute could be used as displayName
 
             ModelAttribute preffered = ModelAttribute.getPreffered();
             if (myAttributes.contains(preffered)) {
@@ -153,7 +151,7 @@ class ModelGenerator {
          *  parse entity and generate attributes:
          *  1) idAttribute
          *  2) primitive attributes if any
-         *  3) do not include attributes with complex type  
+         *  3) do not include attributes with complex type
          */
         Set<String> attributes = parseBeanMethods(entity, controller);
 
@@ -185,13 +183,17 @@ class ModelGenerator {
             builder.append("\n");
             for (String attribute : attributes) {
                 myAttributes.add(new ModelAttribute(attribute));
-                builder.append(attribute).append(": ko.observable(this.").append(attribute).append("),");                                   // NOI18N
+                builder.append(attribute).append(": this.").append(attribute).append(",");                                   // NOI18N
                 builder.append("\n");
             }
             builder.deleteCharAt(builder.length() - 1);
             builder.append("\n});");                                   // NOI18N
             builder.append("\n  });");                                   // NOI18N
-            builder.append("\n    });");                                     // NOI18N
+            builder.append("\n    });");
+            builder.append("self.datasource = new oj.ArrayTableDataSource(\n");
+            builder.append("    self.data,\n");
+            builder.append("    {idAttribute: 'id'}\n");
+            builder.append(");\n");
         }
 
         if (builder.length() > 0) {

@@ -1,7 +1,6 @@
 package org.netbeans.modules.web.knockout.rest.wizard;
 
 import javax.swing.JPanel;
-
 import org.netbeans.modules.websvc.rest.client.RESTExplorerPanel;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.DialogDescriptor;
@@ -13,15 +12,15 @@ import org.openide.nodes.Node;
 import org.openide.util.NbBundle;
 
 public final class RestPanelVisual extends JPanel  {
-    
+
     private static final String UNDERSCORE = "underscore";          // NOI18N
     private static final String UNDERSCORE_JS_ = UNDERSCORE+".js-"; // NOI18N
     private static final String JQUERY_JS = "jquery";               // NOI18N
-    private static final String JQUERY_JS_ = JQUERY_JS+'-';        
-    
+    private static final String JQUERY_JS_ = JQUERY_JS+'-';
+
     private static final String BACKBONE = "backbone";              // NOI18N
     private static final String BACKBONE_JS_ = BACKBONE+".js-";     // NOI18N
-    
+
     private static String REST_CLIENT = "RestClient";               // NOI18N
     private static String JS          = ".js";                      // NOI18N
 
@@ -44,10 +43,6 @@ public final class RestPanelVisual extends JPanel  {
         restProjectResource = new javax.swing.JTextField();
         browseButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
 
         restProjectResource.setEditable(false);
 
@@ -60,39 +55,17 @@ public final class RestPanelVisual extends JPanel  {
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "RESTful Resource:");
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "Display As:");
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, "Plain");
-
-        buttonGroup1.add(jRadioButton2);
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton2, "Table");
-
-        org.openide.awt.Mnemonics.setLocalizedText(jRadioButton3, "Grid");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(restProjectResource)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3)
-                        .addGap(0, 184, Short.MAX_VALUE))))
+                .addComponent(restProjectResource, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,13 +75,7 @@ public final class RestPanelVisual extends JPanel  {
                     .addComponent(restProjectResource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(browseButton)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         restProjectResource.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "ACSN_ProjectPath")); // NOI18N
@@ -118,13 +85,13 @@ public final class RestPanelVisual extends JPanel  {
 
         getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(RestPanelVisual.class, "LBL_RestSource")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
         browseProjectServices();
         myPanel.fireChangeEvent();
-        
+
     }//GEN-LAST:event_browseButtonActionPerformed
-    
+
     private void browseProjectServices() {
         RESTExplorerPanel panel = new RESTExplorerPanel();
         DialogDescriptor descriptor = new DialogDescriptor(panel,
@@ -135,25 +102,21 @@ public final class RestPanelVisual extends JPanel  {
             restProjectResource.setText(myRestNode.getDisplayName());
         }
     }
-                    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField restProjectResource;
     // End of variables declaration//GEN-END:variables
-    
+
     void store(WizardDescriptor descriptor) {
         descriptor.putProperty(RestPanel.EXISTED_BACKBONE, myBackbone);
         descriptor.putProperty(RestPanel.EXISTED_UNDERSCORE, myUnderscore);
         descriptor.putProperty(RestPanel.EXISTED_JQUERY, myJQuery);
     }
-    
+
     void read(WizardDescriptor wizardDescriptor) {
         myBackbone = null;
         Object fileName = wizardDescriptor.getProperty(RestPanel.FILE_NAME);
@@ -164,14 +127,14 @@ public final class RestPanelVisual extends JPanel  {
         else {
             jsName = fileName.toString();
         }
-        
+
         Templates.setTargetName(wizardDescriptor, jsName);
     }
 
     private String suggestJsName(  WizardDescriptor descriptor ) {
         FileObject targetFolder = Templates.getTargetFolder(descriptor);
-        
-        String suggestName = REST_CLIENT;       
+
+        String suggestName = REST_CLIENT;
         if ( targetFolder == null ){
             return suggestName;
         }
@@ -196,22 +159,22 @@ public final class RestPanelVisual extends JPanel  {
         if ( wizardDescriptor == null ){
             return true;
         }
-        wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE, null);    
+        wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE, null);
         if ( getRestNode() == null ){
-            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE, 
+            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE,
                     NbBundle.getMessage(RestPanelVisual.class, "ERR_NoRestResource"));    // NOI18N
             return false;
         }
         String targetName = Templates.getTargetName(wizardDescriptor);
         FileObject targetFolder = Templates.getTargetFolder(wizardDescriptor);
         if ( targetFolder!= null && targetFolder.getFileObject(targetName)!=null){
-            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE, 
+            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE,
                     NbBundle.getMessage(RestPanelVisual.class, "ERR_ExistedFile",targetName));    // NOI18N
             return false;
         }
         return true;
     }
-    
+
     Node getRestNode(){
         return myRestNode;
     }

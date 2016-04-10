@@ -15,7 +15,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
@@ -25,7 +24,6 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.ElementFilter;
-
 import org.netbeans.api.java.source.CompilationController;
 import org.netbeans.api.java.source.JavaSource;
 import org.netbeans.api.java.source.JavaSource.Phase;
@@ -34,17 +32,9 @@ import org.netbeans.modules.web.knockout.rest.wizard.RestPanel.JsUi;
 import org.netbeans.modules.websvc.rest.model.api.RestServiceDescription;
 import org.openide.filesystems.FileObject;
 
-/**
- * @author ads
- *
- */
 public class JSClientGenerator {
 
-//    static final String TABLESORTER_URL = 
-//            "http://mottie.github.com/tablesorter/";                 // NOI18N
-//    
     enum MethodType {
-
         GET,
         SET
     }
@@ -69,18 +59,18 @@ public class JSClientGenerator {
 
     private static final Logger LOG = Logger.getLogger(JSClientGenerator.class.getName());
 
-    private static final String PATH = "javax.ws.rs.Path";           // NOI18N
-    private static final String PATH_PARAM = "javax.ws.rs.PathParam";// NOI18N
-    private static final String GET = "javax.ws.rs.GET";             // NOI18N
-    private static final String PUT = "javax.ws.rs.PUT";             // NOI18N
-    private static final String POST = "javax.ws.rs.POST";           // NOI18N
-    private static final String DELETE = "javax.ws.rs.DELETE";       // NOI18N
-    private static final String PRODUCES = "javax.ws.rs.Produces";   // NOI18N
-    private static final String CONSUMES = "javax.ws.rs.Consumes";   // NOI18N
-    private static final String JSON = "application/json";           // NOI18N
+    private static final String PATH = "javax.ws.rs.Path";
+    private static final String PATH_PARAM = "javax.ws.rs.PathParam";
+    private static final String GET = "javax.ws.rs.GET";
+    private static final String PUT = "javax.ws.rs.PUT";
+    private static final String POST = "javax.ws.rs.POST";
+    private static final String DELETE = "javax.ws.rs.DELETE";
+    private static final String PRODUCES = "javax.ws.rs.Produces";
+    private static final String CONSUMES = "javax.ws.rs.Consumes";
+    private static final String JSON = "application/json";
 
     private static final String XML_ROOT_ELEMENT
-            = "javax.xml.bind.annotation.XmlRootElement";                  // NOI18N
+            = "javax.xml.bind.annotation.XmlRootElement";
 
     private JSClientGenerator(RestServiceDescription description, JsUi ui) {
         myDescription = description;
@@ -165,16 +155,16 @@ public class JSClientGenerator {
         if (!isModelGenerated) {
             myModels.append("// No JSON media type is detected in GET RESTful methods\n");
         }
-        result.put("models", myModels.toString());           // NOI18N 
-        result.put("routers", myRouters.toString());        // NOI18N 
-        result.put("header", myHeader.toString());          // NOI18N 
-        result.put("sidebar", mySidebar.toString());        // NOI18N 
-        result.put("content", myContent.toString());        // NOI18N 
-        result.put("tpl_create", myTmplCreate.toString());  // NOI18N 
-        result.put("tpl_list_item", myTmplList.toString()); // NOI18N 
-        result.put("tpl_details", myTmplDetails.toString());// NOI18N 
+        result.put("models", myModels.toString());
+        result.put("routers", myRouters.toString());
+        result.put("header", myHeader.toString());
+        result.put("sidebar", mySidebar.toString());
+        result.put("content", myContent.toString());
+        result.put("tpl_create", myTmplCreate.toString());
+        result.put("tpl_list_item", myTmplList.toString());
+        result.put("tpl_details", myTmplDetails.toString());
         if (hasUi()) {
-            result.put("ui", Boolean.TRUE.toString());      // NOI18N
+            result.put("ui", Boolean.TRUE.toString());
         }
 
         return result;
@@ -234,7 +224,7 @@ public class JSClientGenerator {
                      * are considered as JSON serializable ( that's true for
                      * NB generated entities ) but there could be probably
                      * other ways to serialize ( read/write REST providers )
-                     * POJO classes     
+                     * POJO classes
                      */
                     continue;
                 }
@@ -271,7 +261,7 @@ public class JSClientGenerator {
                      * are considered as JSON serializable ( that's true for
                      * NB generated entities ) but there could be probably
                      * other ways to serialize ( read/write REST providers )
-                     * POJO classes     
+                     * POJO classes
                      */
                     continue;
                 }
@@ -390,180 +380,107 @@ public class JSClientGenerator {
             String collectionPath, Map<HttpRequests, String> httpPaths,
             CompilationController controller, ModelGenerator modelGenerator) {
         if (myModelsCount > 0) {
-            myRouters.append("/*");                                 // NOI18N
+            myRouters.append("/*");
         }
-        String name = "AppRouter";                                  // NOI18N
+        String name = "AppRouter";
         if (myModelsCount > 0) {
             name = name + myModelsCount;
         }
         RouterGenerator generator = new RouterGenerator(myRouters, name,
                 modelGenerator);
         generator.generateRouter(entity, path, collectionPath, httpPaths, controller);
-
         if (myModelsCount == 0) {
-            // Create HTML "view" for header identifier 
-            myHeader.append("<div id='");                           // NOI18N
+            // Create HTML "view" for header identifier
+            myHeader.append("<div id='");
             myHeader.append(generator.getHeaderId());
-            myHeader.append("'></div>\n");                          // NOI18N
-
-            if (generator.getSideBarId() != null) {
-                // Create HTML "view" for sidebar identifier
-                generateCollection(generator);
-            }
-
-            // Create HTML "view" for content identifier
+            myHeader.append("'></div>\n");
             generateContent(generator);
-
             if (generator.getCreateTemplate() != null) {
-                // Create HTML "view" for "create new item" template
-                myTmplCreate.append("<script type='text/template' id='");               // NOI18N
+                myTmplCreate.append("<script type='text/template' id='");
                 myTmplCreate.append(generator.getCreateTemplate());
-                myTmplCreate.append("'>\n");                                            // NOI18N
-                myTmplCreate.append("<!--\n");                                          // NOI18N
-                myTmplCreate.append("\tPut your controls to create new entity here.\n\n");// NOI18N
-                myTmplCreate.append("\tClass 'new' is used to listen on events in JS code.\n");// NOI18N
-                myTmplCreate.append("-->\n");                                           // NOI18N
-                myTmplCreate.append("<button class='new'>Create</button>\n");           // NOI18N
-                myTmplCreate.append("</script>\n");                                     // NOI18N
+                myTmplCreate.append("'>\n");
+                myTmplCreate.append("<!--\n");
+                myTmplCreate.append("\tPut your controls to create new entity here.\n\n");
+                myTmplCreate.append("\tClass 'new' is used to listen on events in JS code.\n");
+                myTmplCreate.append("-->\n");
+                myTmplCreate.append("<button class='new'>Create</button>\n");
+                myTmplCreate.append("</script>\n");
             }
 
             if (generator.getListItemTemplate() != null) {
-                // Create HTML "view" for list item
-//                if ( generator.useUi() ){
                 generateHeadTemplate(generator);
-//                }
-                myTmplList.append("<script type='text/template' id='");                 // NOI18N
+                myTmplList.append("<script type='text/template' id='");
                 myTmplList.append(generator.getListItemTemplate());
-                myTmplList.append("'>\n");                                              // NOI18N
+                myTmplList.append("'>\n");
                 generateItemContent(generator);
-                myTmplList.append("</script>\n");                                       // NOI18N
+                myTmplList.append("</script>\n");
             }
 
             if (generator.getDetailsTemplate() != null) {
-                myTmplDetails.append("<table border=\"1\">\n");
-                myTmplDetails.append("<thead>\n");
+                myTmplDetails.append("<table id=\"table\"\n");
+                myTmplDetails.append("   data-bind=\"ojComponent: {\n");
+                myTmplDetails.append("   component: 'ojTable',\n");
+                myTmplDetails.append("      data: datasource,\n");
+                myTmplDetails.append("      columns: [\n");
                 Set<ModelAttribute> attributes1 = modelGenerator.getAttributes();
-                myTmplDetails.append("<tr>\n");                             // NOI18N
                 for (ModelAttribute attribute : attributes1) {
                     String attrName = attribute.getName();
-                    myTmplDetails.append("<th>").append(attrName.toUpperCase()).append("</th>\n");
+                    String attrNameUp = attrName.toUpperCase();
+                    myTmplDetails.append("            {headerText: '" + attrNameUp + "',  field: '" + attrName + "'},\n");
                 }
-                myTmplDetails.append("</tr>\n");
-                myTmplDetails.append("</thead>\n");
-                myTmplDetails.append("<tbody data-bind=\"foreach: items\">\n");
-                Set<ModelAttribute> attributes = modelGenerator.getAttributes();
-                myTmplDetails.append("<tr>\n");                             // NOI18N
-                for (ModelAttribute attribute : attributes) {
-                    String attrName = attribute.getName();
-                    myTmplDetails.append("<td data-bind=\"text: ").append(attrName).append("\"/>\n");
-                }
-                myTmplDetails.append("</tr>\n");                           // NOI18N
-                myTmplDetails.append("</tbody>\n</table>");                        // NOI18N
+                myTmplDetails.append("]}\">\n");
+                myTmplDetails.append("</table>\n");
             }
         } else {
-            myRouters.append("*/");                                         // NOI18N
+            myRouters.append("*/");
         }
         myModelsCount++;
     }
 
     private void generateHeadTemplate(RouterGenerator generator) {
-        myTmplList.append("<script type='text/template' id='");                 // NOI18N
+        myTmplList.append("<script type='text/template' id='");
         myTmplList.append(generator.getTableHeadId());
-        myTmplList.append("'>\n<thead>\n<tr>\n");                               // NOI18N
+        myTmplList.append("'>\n<thead>\n<tr>\n");
 
         if (generator.getModelGenerator().getIdAttribute() != null) {
             String id = generator.getModelGenerator().getIdAttribute()
                     .getName();
-            myTmplList.append("<th>");                                          // NOI18N
+            myTmplList.append("<th>");
             myTmplList.append(id);
-            myTmplList.append("</th>\n");                                       // NOI18N
+            myTmplList.append("</th>\n");
         }
         Set<ModelAttribute> attributes = generator.getModelGenerator()
                 .getAttributes();
         for (ModelAttribute attribute : attributes) {
-            myTmplList.append("<th>");                                          // NOI18N
+            myTmplList.append("<th>");
             myTmplList.append(attribute.getName());
-            myTmplList.append("</th>\n");                                       // NOI18N
+            myTmplList.append("</th>\n");
         }
 
-        myTmplList.append("</tr>\n</thead>\n</script>\n");                      // NOI18N
+        myTmplList.append("</tr>\n</thead>\n</script>\n");
     }
 
     private void generateItemContent(RouterGenerator generator) {
-//        if ( generator.useUi()){
         if (generator.getModelGenerator().getIdAttribute() != null) {
             String id = generator.getModelGenerator().getIdAttribute().getName();
-            myTmplList.append("<td><a href='#<%= ");                // NOI18N
+            myTmplList.append("<td><a href='#<%= ");
             myTmplList.append(id);
-            myTmplList.append(" %>'><%= ");                         // NOI18N
+            myTmplList.append(" %>'><%= ");
             myTmplList.append(id);
-            myTmplList.append(" %></a></td>\n");                    // NOI18N
+            myTmplList.append(" %></a></td>\n");
         }
         Set<ModelAttribute> attributes = generator.getModelGenerator().getAttributes();
         for (ModelAttribute attribute : attributes) {
-            myTmplList.append("<td><%= ");                          // NOI18N
+            myTmplList.append("<td><%= ");
             myTmplList.append(attribute.getName());
-            myTmplList.append(" %></td>\n");                      // NOI18N
+            myTmplList.append(" %></td>\n");
         }
-//        }
-//        else {
-//            myTmplList.append("<!-- modify output display name for item here");     // NOI18N
-//            myTmplList.append(" or change displayName in the JS model code -->\n"); // NOI18N
-//            if (generator.getModelGenerator().getIdAttribute()!= null){
-//                myTmplList.append("<a href='#<%= ");                                // NOI18N
-//                myTmplList.append(generator.getModelGenerator().getIdAttribute().getName());
-//                myTmplList.append(" %>'><%= displayName %></a>\n");                 // NOI18N
-//            }
-//            else {
-//                myTmplList.append("<%= displayName %>\n");                          // NOI18N
-//            }
-//        }
-    }
-
-    private void generateCollection(RouterGenerator generator) {
-////        if ( generator.useUi()){
-//            hasUi = true;
-//            mySidebar.append("<table id='");                                 // NOI18N
-//            mySidebar.append(generator.getSideBarId());
-//            mySidebar.append("' class='tablesorter-blue'>\n</table>\n");         // NOI18N
-//            mySidebar.append("<div class='pager' id='pager'>\n");            // NOI18N
-//            mySidebar.append("<img src='");                                  // NOI18N
-//            mySidebar.append(TABLESORTER_URL);
-//            mySidebar.append("addons/pager/icons/first.png' class='first' ");// NOI18N
-//            mySidebar.append("alt='First'/>\n");                             // NOI18N
-//            mySidebar.append("<img src='");                                  // NOI18N
-//            mySidebar.append(TABLESORTER_URL);
-//            mySidebar.append("addons/pager/icons/prev.png' class='prev' ");  // NOI18N
-//            mySidebar.append("alt='Prev'/>\n");                              // NOI18N
-//            mySidebar.append("<span class='pagedisplay'></span>");           // NOI18N   
-//            mySidebar.append(" <!-- this can be any element, including an input -->\n");// NOI18N  
-//            mySidebar.append("<img src='");                                  // NOI18N
-//            mySidebar.append(TABLESORTER_URL);
-//            mySidebar.append("addons/pager/icons/next.png' class='next' ");  // NOI18N
-//            mySidebar.append("alt='Next'/>\n");                              // NOI18N
-//            mySidebar.append("<img src='");                                  // NOI18N
-//            mySidebar.append(TABLESORTER_URL);
-//            mySidebar.append("addons/pager/icons/last.png' class='last' ");  // NOI18N
-//            mySidebar.append("alt='Last'/>\n");                              // NOI18N                        
-//            mySidebar.append("<select class='pagesize'>\n");                 // NOI18N
-//            mySidebar.append("<option selected='selected' value='10'>");     // NOI18N
-//            mySidebar.append("10</option>\n");                               // NOI18N
-//            mySidebar.append("<option value='20'>20</option>\n");            // NOI18N
-//            mySidebar.append("<option value='30'>30</option>\n");            // NOI18N
-//            mySidebar.append("<option value='40'>40</option>\n");            // NOI18N
-//            mySidebar.append("</select>\n</div>\n<br>\n");                   // NOI18N   
-//        }
-//        else {
-//            mySidebar.append("<div id='");                                  // NOI18N
-//            mySidebar.append(generator.getSideBarId());
-//            mySidebar.append("'></div>\n");                                 // NOI18N
-//        }
     }
 
     private void generateContent(RouterGenerator generator) {
-        myContent.append("<div id='");                          // NOI18N
+        myContent.append("<div id='");
         myContent.append(generator.getContentId());
-        myContent.append("'></div>\n");                         // NOI18N
+        myContent.append("'></div>\n");
     }
 
     private String removeParamTemplate(String path, String param) {
@@ -634,7 +551,7 @@ public class JSClientGenerator {
                 : elementValues.entrySet()) {
             ExecutableElement annotationMethod = entry.getKey();
             AnnotationValue value = entry.getValue();
-            if (annotationMethod.getSimpleName().contentEquals("value")) { // NOI18N
+            if (annotationMethod.getSimpleName().contentEquals("value")) {
                 Object val = value.getValue();
                 if (val != null) {
                     return val.toString();
@@ -657,7 +574,7 @@ public class JSClientGenerator {
                 : elementValues.entrySet()) {
             ExecutableElement annotationMethod = entry.getKey();
             AnnotationValue value = entry.getValue();
-            if (annotationMethod.getSimpleName().contentEquals("value")) {      // NOI18N
+            if (annotationMethod.getSimpleName().contentEquals("value")) {
                 Object mediaType = value.getValue();
                 if (mediaType instanceof List<?>) {
                     List<?> types = (List<?>) mediaType;

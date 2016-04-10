@@ -1,8 +1,8 @@
-define(['ojs/ojcore', 'knockout'
+define(['ojs/ojcore', 'knockout', 'ojs/ojtable'
 ], function (oj, ko) {
-    function customerContentViewModel() {
+    function GeneratedContentViewModel() {
         var self = this;
-        ${models} 
+        ${models}
     }
-    return customerContentViewModel;
+    return GeneratedContentViewModel;
 });
