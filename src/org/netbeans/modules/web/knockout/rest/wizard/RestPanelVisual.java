@@ -24,11 +24,17 @@ public final class RestPanelVisual extends JPanel  {
     private static String REST_CLIENT = "RestClient";               // NOI18N
     private static String JS          = ".js";                      // NOI18N
 
+    @NbBundle.Messages("RestPanelVisual.name=Select REST Resource")
     public RestPanelVisual(RestPanel panel) {
         myPanel = panel;
         initComponents();
         String jsName = suggestJsName(panel.getDescriptor());
         Templates.setTargetName(panel.getDescriptor(), jsName);
+    }
+
+    @Override
+    public String getName() {
+        return Bundle.RestPanelVisual_name();
     }
 
     /** This method is called from within the constructor to

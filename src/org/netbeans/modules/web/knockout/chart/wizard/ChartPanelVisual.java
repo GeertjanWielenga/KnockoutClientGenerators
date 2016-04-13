@@ -1,7 +1,6 @@
 package org.netbeans.modules.web.knockout.chart.wizard;
 
 import javax.swing.JPanel;
-import org.netbeans.api.annotations.common.StaticResource;
 import org.netbeans.modules.websvc.rest.client.RESTExplorerPanel;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.DialogDescriptor;
@@ -25,20 +24,17 @@ public final class ChartPanelVisual extends JPanel {
     private static String REST_CLIENT = "RestClient";               // NOI18N
     private static String JS = ".js";                      // NOI18N
 
-    @StaticResource
-    private static final String AREA = "org/netbeans/modules/web/knockout/rest/resources/area.png";
-    @StaticResource
-    private static final String BAR = "org/netbeans/modules/web/knockout/rest/resources/bar.png";
-    @StaticResource
-    private static final String BUBBLE = "org/netbeans/modules/web/knockout/rest/resources/bubble.png";
-    @StaticResource
-    private static final String COMBINATION = "org/netbeans/modules/web/knockout/rest/resources/combination.png";
-
+    @NbBundle.Messages("ChartPanelVisual.name=Select Chart Type")
     public ChartPanelVisual(ChartPanel panel) {
         myPanel = panel;
         initComponents();
         String jsName = suggestJsName(panel.getDescriptor());
         Templates.setTargetName(panel.getDescriptor(), jsName);
+    }
+
+    @Override
+    public String getName() {
+        return Bundle.ChartPanelVisual_name();
     }
 
     /**
@@ -50,14 +46,11 @@ public final class ChartPanelVisual extends JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         barChart = new javax.swing.JButton();
         bubbleChart = new javax.swing.JButton();
         combinationChart = new javax.swing.JButton();
         areaChart = new javax.swing.JButton();
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "Chart Type:");
 
         barChart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/netbeans/modules/web/knockout/rest/resources/area.png"))); // NOI18N
         jTabbedPane1.addTab("Area", barChart);
@@ -82,19 +75,15 @@ public final class ChartPanelVisual extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(351, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleDescription(org.openide.util.NbBundle.getMessage(ChartPanelVisual.class, "LBL_RestSource")); // NOI18N
@@ -121,7 +110,6 @@ public final class ChartPanelVisual extends JPanel {
     private javax.swing.JButton bubbleChart;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton combinationChart;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
