@@ -46,6 +46,7 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
 
     @TemplateRegistrations({
         @TemplateRegistration(
+                targetName = "rest",
                 folder = "ClientSide/OJET",
                 content = "../../resources/korest.js",
                 scriptEngine = "freemarker",
@@ -53,8 +54,9 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
                 displayName = "#Templates/ClientSide/OJET/EmptyJETModule-js",
                 iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),
         @TemplateRegistration(
+                targetName = "rest",
                 folder = "ClientSide/OJET",
-                content = "../../resources/kojs.html",
+                content = "../../resources/korest.html",
                 scriptEngine = "freemarker",
                 position = 101,
                 displayName = "#Templates/ClientSide/OJET/EmptyJETModule-html",
@@ -66,29 +68,31 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
         return new NewJetModuleWizardIterator(Type.REST);
     }
 
-//    @TemplateRegistrations({
-//        @TemplateRegistration(
-//                folder = "ClientSide/OJET",
-//                content = "../resources/KnockoutJETModule-js",
-//                scriptEngine = "freemarker",
-//                position = 200,
-//                displayName = "#Templates/ClientSide/OJET/KnockoutJETModule-js",
-//                iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),
-//        @TemplateRegistration(
-//                folder = "ClientSide/OJET",
-//                content = "../resources/KnockoutJETModule-html",
-//                scriptEngine = "freemarker",
-//                position = 201,
-//                displayName = "#Templates/ClientSide/OJET/KnockoutJETModule-html",
-//                iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),
-//    })
-//    @NbBundle.Messages({
-//        "Templates/ClientSide/OJET/KnockoutJETModule-js=Knockout JET Module (JavaScript)",
-//        "Templates/ClientSide/OJET/KnockoutJETModule-html=Knockout JET Module (HTML)",
-//    })
-//    public static NewJetModuleWizardIterator knockout() {
-//        return new NewJetModuleWizardIterator(Type.KNOCKOUT);
-//    }
+    @TemplateRegistrations({
+        @TemplateRegistration(
+                targetName = "chart",
+                folder = "ClientSide/OJET",
+                content = "../../resources/kochart.js",
+                scriptEngine = "freemarker",
+                position = 200,
+                displayName = "#Templates/ClientSide/OJET/ChartJETModule-js",
+                iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),
+        @TemplateRegistration(
+                targetName = "chart",
+                folder = "ClientSide/OJET",
+                content = "../../resources/kochart.html",
+                scriptEngine = "freemarker",
+                position = 201,
+                displayName = "#Templates/ClientSide/OJET/ChartJETModule-html",
+                iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),
+    })
+    @NbBundle.Messages({
+        "Templates/ClientSide/OJET/ChartJETModule-js=Chart JET Module (JavaScript)",
+        "Templates/ClientSide/OJET/ChartJETModule-html=Chart JET Module (HTML)",})
+    public static NewJetModuleWizardIterator chart() {
+        return new NewJetModuleWizardIterator(Type.CHART);
+    }
+
     @Override
     public void initialize(WizardDescriptor wizard) {
         this.descriptor = wizard;
@@ -266,17 +270,17 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
 
     //~ Inner classes
     private enum Type {
-//        EMPTY {
-//            @Override
-//            String getJsTemplatePath() {
-//                return "Templates/ClientSide/OJET/EmptyJETModule-js"; // NOI18N
-//            }
-//
-//            @Override
-//            String getHtmlTemplatePath() {
-//                return "Templates/ClientSide/OJET/EmptyJETModule-html"; // NOI18N
-//            }
-//        },
+        CHART {
+            @Override
+            String getJsTemplatePath() {
+                return "Templates/ClientSide/OJET/kochart.js"; // NOI18N
+            }
+
+            @Override
+            String getHtmlTemplatePath() {
+                return "Templates/ClientSide/OJET/kochart.html"; // NOI18N
+            }
+        },
         REST {
             @Override
             String getJsTemplatePath() {
@@ -285,7 +289,7 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
 
             @Override
             String getHtmlTemplatePath() {
-                return "Templates/ClientSide/OJET/kojs.html"; // NOI18N
+                return "Templates/ClientSide/OJET/korest.html"; // NOI18N
             }
         };
 

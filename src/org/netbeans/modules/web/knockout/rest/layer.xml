@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
-    
+
     <folder name="Templates">
         <folder name="ClientSide">
             <folder name="OJET">
@@ -18,10 +18,19 @@
                 <attr name="templateCategory" stringvalue="html5"/>
                 <attr name="templateWizardURL" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/wizard/resources/JSClient.html"/>
             </folder>
+            <folder name="DummyEmptyRESTJETModule2">
+                <attr name="instantiatingIterator" methodvalue="org.netbeans.modules.web.knockout.rest.wizard.ui.NewJetModuleWizardIterator.chart"/>
+                <attr name="position" intvalue="860"/>
+                <attr name="displayName" bundlevalue="org.netbeans.modules.web.knockout.rest.wizard.Bundle#Templates/Clientside/DummyEmptyRESTJETModule2"/>
+                <attr name="iconBase" stringvalue="org/netbeans/modules/web/knockout/rest/resources/restservice.png"/>
+                <attr name="template" boolvalue="true"/>
+                <attr name="templateCategory" stringvalue="html5"/>
+                <attr name="templateWizardURL" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/wizard/resources/JSClient2.html"/>
+            </folder>
         </folder>
     </folder>
 
-    
+
     <!--    <folder name="Templates">
         <folder name="ClientSide">
             <file name="RestKnockoutClient.js">
@@ -53,7 +62,7 @@
                 <attr name="templateWizardURL" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/wizard/resources/JSClient.html"/>
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.web.knockout.rest.wizard.Bundle"/>
                 <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/netbeans/modules/web/knockout/rest/resources/restservice.png"/>
-            </file>            
-        </folder>    
+            </file>
+        </folder>
     </folder>-->
 </filesystem>
