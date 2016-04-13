@@ -16,6 +16,7 @@ import org.netbeans.api.annotations.common.NonNull;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.templates.TemplateRegistration;
 import org.netbeans.api.templates.TemplateRegistrations;
+import org.netbeans.modules.web.knockout.chart.wizard.ChartPanel;
 import org.netbeans.modules.web.knockout.rest.wizard.JSClientGenerator;
 import org.netbeans.modules.web.knockout.rest.wizard.RestPanel;
 import org.netbeans.modules.websvc.rest.model.api.RestServiceDescription;
@@ -84,8 +85,7 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
                 scriptEngine = "freemarker",
                 position = 201,
                 displayName = "#Templates/ClientSide/OJET/ChartJETModule-html",
-                iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),
-    })
+                iconBase = "org/netbeans/modules/web/knockout/rest/resources/restservice.png"),})
     @NbBundle.Messages({
         "Templates/ClientSide/OJET/ChartJETModule-js=Chart JET Module (JavaScript)",
         "Templates/ClientSide/OJET/ChartJETModule-html=Chart JET Module (HTML)",})
@@ -94,14 +94,14 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
     }
 
     @Override
-    public void initialize(WizardDescriptor wizard) {
-        this.descriptor = wizard;
-        myRestPanel = new RestPanel(wizard);
+    public void initialize(WizardDescriptor descriptor) {
+        this.descriptor = descriptor;
+        myRestPanel = new RestPanel(descriptor);
         init();
-        panels = getPanels(wizard);
+        panels = getPanels(descriptor);
 
         // make sure list of steps is accurate.
-        String[] beforeSteps = (String[]) wizard.getProperty(WizardDescriptor.PROP_CONTENT_DATA);
+        String[] beforeSteps = (String[]) descriptor.getProperty(WizardDescriptor.PROP_CONTENT_DATA);
         int beforeStepLength = beforeSteps.length - 1;
         String[] steps = createSteps(beforeSteps);
         for (int i = 0; i < panels.length; i++) {
@@ -201,10 +201,16 @@ public final class NewJetModuleWizardIterator implements WizardDescriptor.Asynch
         // noop
     }
 
-    private WizardDescriptor.Panel<WizardDescriptor>[] getPanels(WizardDescriptor wizard) {
-        return new WizardDescriptor.Panel[]{
-            myRestPanel,
-            new NewJetModuleWizardPanel()};
+    private WizardDescriptor.Panel<WizardDescriptor>[] getPanels(WizardDescriptor descriptor) {
+        if (type == Type.REST) {
+            return new WizardDescriptor.Panel[]{
+                myRestPanel,
+                new NewJetModuleWizardPanel()};
+        } else {
+            return new WizardDescriptor.Panel[]{
+                new ChartPanel(descriptor),
+                new NewJetModuleWizardPanel()};
+        }
     }
 
     private void init() {
